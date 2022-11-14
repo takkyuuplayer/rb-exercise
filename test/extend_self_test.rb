@@ -18,12 +18,12 @@ end
 
 class ExtendSelfTest < Minitest::Test
   def test_with_extend
-    assert_equal true, Foo.singleton_methods.include?(:foo)
-    assert_equal true, Foo.instance_methods.include?(:foo)
+    assert_includes Foo.singleton_methods, :foo
+    assert_includes Foo.instance_methods, :foo
   end
 
   def test_without_extend
-    assert_equal false, Bar.singleton_methods.include?(:bar)
-    assert_equal true, Bar.instance_methods.include?(:bar)
+    refute_includes Bar.singleton_methods, :bar
+    assert_includes Bar.instance_methods, :bar
   end
 end

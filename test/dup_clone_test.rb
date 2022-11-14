@@ -20,12 +20,12 @@ class DupCloneTest < Minitest::Test
     k.freeze
 
     assert_equal 4, k.square
-    assert_equal true, k.frozen?
+    assert k.frozen?
 
     cloned = k.clone
 
-    assert_equal true, cloned.methods.include?(:square)
-    assert_equal true, cloned.frozen?
+    assert_includes cloned.methods, :square
+    assert cloned.frozen?
   end
 
   def test_dup_will_not_copy_singular_method_or_frozen_state
@@ -36,12 +36,12 @@ class DupCloneTest < Minitest::Test
     end
     k.freeze
 
-    assert_equal true, k.methods.include?(:square)
-    assert_equal true, k.frozen?
+    assert_includes k.methods, :square
+    assert k.frozen?
 
     duped = k.dup
 
-    assert_equal false, duped.methods.include?(:square)
-    assert_equal false, duped.frozen?
+    refute_includes duped.methods, :square
+    refute duped.frozen?
   end
 end
