@@ -42,10 +42,10 @@ class StringTest < Minitest::Test
     sym = :test
     sym2 = :test
 
-    assert_equal false, str.frozen?
-    assert_equal true, sym.frozen?
+    refute str.frozen?
+    assert sym.frozen?
 
-    assert str.object_id != str2.object_id
+    refute_equal str.object_id, str2.object_id
     assert sym.equal?(sym2)
   end
 end

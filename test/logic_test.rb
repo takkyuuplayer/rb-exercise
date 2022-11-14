@@ -22,6 +22,6 @@ class LogicTest < Minitest::Test
 
     b = 1 && true
 
-    assert_equal true, b
+    assert b
   end
 end

@@ -61,8 +61,7 @@ class HashTest < Minitest::Test
   end
 
   def square(num)
-    @squares ||= {5 => 100}
+    @squares ||= { 5 => 100 }
     @squares[num] ||= num**2
   end
-
 end

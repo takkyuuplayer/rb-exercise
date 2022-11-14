@@ -9,7 +9,8 @@ module M1
 end
 
 module M2
-  extend self
+  module_function
+
   def foo
     1
   end
@@ -25,12 +26,15 @@ end
 class C1
   include M1
 end
+
 class C2
   include M2
 end
+
 class C3
   include M3
 end
+
 class CI1
   def initialize
     super
@@ -40,37 +44,36 @@ end
 
 class MixinTest < Minitest::Test
   def test_module
-    assert_equal false, M1.singleton_methods.include?(:foo)
-    assert_equal true,  M1.instance_methods.include?(:foo)
+    refute_includes M1.singleton_methods, :foo
+    assert_includes M1.instance_methods, :foo
 
-    assert_equal true,  M2.singleton_methods.include?(:foo)
-    assert_equal true,  M2.instance_methods.include?(:foo)
+    assert_includes M2.singleton_methods, :foo
+    refute_includes M2.instance_methods, :foo
 
-    assert_equal true,  M3.singleton_methods.include?(:foo)
-    assert_equal false, M3.instance_methods.include?(:foo)
+    assert_includes M3.singleton_methods, :foo
+    refute_includes M3.instance_methods, :foo
   end
 
-  def test_included_function_will_follow_method_visibility_1
+  def test_included_function_will_follow_method_visibility1
     k = C1.new
 
-    assert_equal true,  k.public_methods.include?(:foo)
-    assert_equal false, k.private_methods.include?(:foo)
+    assert_includes k.public_methods, :foo
+    refute_includes k.private_methods, :foo
     assert_equal 1, k.foo
   end
 
-  def test_included_function_will_follow_method_visibility_2
+  def test_included_function_will_follow_method_visibility2
     k = C2.new
 
-    assert_equal true,  k.public_methods.include?(:foo)
-    assert_equal false, k.private_methods.include?(:foo)
-    assert_equal 1, k.foo
+    refute_includes k.public_methods, :foo
+    assert_includes k.private_methods, :foo
   end
 
   def test_module_function_will_be_private_in_class
     k = C3.new
 
-    assert_equal false, k.public_methods.include?(:foo)
-    assert_equal true,  k.private_methods.include?(:foo)
+    refute_includes k.public_methods, :foo
+    assert_includes k.private_methods, :foo
   end
 
   def test_extend_in_initialize
