@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'jwt'
 require 'minitest/autorun'
 
@@ -6,7 +8,7 @@ class JwtTest < Minitest::Test
     payload = { data: 'test' }
     token = JWT.encode payload, nil, 'none'
 
-    assert_equal "eyJhbGciOiJub25lIn0.eyJkYXRhIjoidGVzdCJ9.", token
+    assert_equal 'eyJhbGciOiJub25lIn0.eyJkYXRhIjoidGVzdCJ9.', token
 
     decoded_token = JWT.decode token, nil, false
 
@@ -14,4 +16,3 @@ class JwtTest < Minitest::Test
     assert_equal a, decoded_token
   end
 end
-

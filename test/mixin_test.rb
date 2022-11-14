@@ -9,7 +9,8 @@ module M1
 end
 
 module M2
-  extend self
+  module_function
+
   def foo
     1
   end
@@ -25,12 +26,15 @@ end
 class C1
   include M1
 end
+
 class C2
   include M2
 end
+
 class C3
   include M3
 end
+
 class CI1
   def initialize
     super
@@ -50,7 +54,7 @@ class MixinTest < Minitest::Test
     assert_equal false, M3.instance_methods.include?(:foo)
   end
 
-  def test_included_function_will_follow_method_visibility_1
+  def test_included_function_will_follow_method_visibility1
     k = C1.new
 
     assert_equal true,  k.public_methods.include?(:foo)
@@ -58,7 +62,7 @@ class MixinTest < Minitest::Test
     assert_equal 1, k.foo
   end
 
-  def test_included_function_will_follow_method_visibility_2
+  def test_included_function_will_follow_method_visibility2
     k = C2.new
 
     assert_equal true,  k.public_methods.include?(:foo)

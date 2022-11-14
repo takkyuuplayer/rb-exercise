@@ -3,7 +3,7 @@
 require 'minitest/autorun'
 
 module Foo
-  extend self
+  module_function
 
   def foo
     1

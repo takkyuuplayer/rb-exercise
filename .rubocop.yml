@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 # The behavior of RuboCop can be controlled via the .rubocop.yml
 # configuration file. It makes it possible to enable/disable
 # certain cops (checks) and to alter their behavior if they accept
@@ -13,5 +11,8 @@ inherit_from: .rubocop_todo.yml
 Style/Documentation:
   Enabled: false
 Metrics/MethodLength:
+  Exclude:
+    - '**/*_test.rb'
+Metrics/AbcSize:
   Exclude:
     - '**/*_test.rb'
