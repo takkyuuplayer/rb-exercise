@@ -48,7 +48,7 @@ class MixinTest < Minitest::Test
     assert_includes M1.instance_methods, :foo
 
     assert_includes M2.singleton_methods, :foo
-    assert_includes M2.instance_methods, :foo
+    refute_includes M2.instance_methods, :foo
 
     assert_includes M3.singleton_methods, :foo
     refute_includes M3.instance_methods, :foo
@@ -65,9 +65,8 @@ class MixinTest < Minitest::Test
   def test_included_function_will_follow_method_visibility2
     k = C2.new
 
-    assert_includes k.public_methods, :foo
-    refute_includes k.private_methods, :foo
-    assert_equal 1, k.foo
+    refute_includes k.public_methods, :foo
+    assert_includes k.private_methods, :foo
   end
 
   def test_module_function_will_be_private_in_class

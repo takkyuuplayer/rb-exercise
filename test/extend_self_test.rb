@@ -19,7 +19,7 @@ end
 class ExtendSelfTest < Minitest::Test
   def test_with_extend
     assert_includes Foo.singleton_methods, :foo
-    assert_includes Foo.instance_methods, :foo
+    refute_includes Foo.instance_methods, :foo
   end
 
   def test_without_extend
