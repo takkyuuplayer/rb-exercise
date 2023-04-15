@@ -17,7 +17,7 @@ jobs:
           bundle exec -- rubocop -A
       - uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update dependencies"
           title: "Update dependencies"
           branch: "update-dependencies"
