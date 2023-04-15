@@ -12,6 +12,7 @@ jobs:
 
       - name: update gem
         run: |
+          bundle config unset deployment
           bundle update
           bundle exec -- rubocop -A
       - uses: peter-evans/create-pull-request@v3
