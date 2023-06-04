@@ -17,7 +17,7 @@ jobs:
           bundle config unset deployment
           bundle update
           bundle exec -- rubocop -A
-      - uses: peter-evans/create-pull-request@v3
+      - uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update dependencies"
