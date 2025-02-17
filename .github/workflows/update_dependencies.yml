@@ -1,5 +1,6 @@
 name: Update Dependencies
 on:
+  push:
   schedule:
     - cron: "0 0 1 * *"
 jobs:
@@ -19,19 +20,9 @@ jobs:
           bundle exec -- rubocop -A
       - uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
           commit-message: "Update dependencies"
           title: "Update dependencies"
           branch: "update-dependencies"
           delete-branch: true
           reviewers: takkyuuplayer
-          body: |
-            Run
-
-            ```
-            $ git fetch --all
-            $ git checkout update-dependencies
-            $ git reset --hard origin/update-dependencies
-            $ git commit --allow-empty -m "run ci"
-            $ git push
-            ```
