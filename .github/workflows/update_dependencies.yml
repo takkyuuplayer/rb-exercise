@@ -1,8 +1,5 @@
 name: Update Dependencies
 on:
-  push:
-    branches:
-      - ci-update-dependencies
   schedule:
     - cron: "0 0 1 * *"
 permissions:
