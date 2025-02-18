@@ -24,9 +24,15 @@ jobs:
           bundle config unset deployment
           bundle update
           bundle exec -- rubocop -A
+
+      - uses: actions/create-github-app-token@v1
+        id: generate-token
+        with:
+          app-id: ${{ secrets.CI_APP_ID }}
+          private-key: ${{ secrets.CI_APP_PRIVATE_KEY }}
       - uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ steps.generate-token.outputs.token }}
           commit-message: "Update dependencies"
           title: "Update dependencies"
           branch: "update-dependencies"
