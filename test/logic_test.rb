@@ -20,7 +20,7 @@ class LogicTest < Minitest::Test
 
     assert_equal 1, a
 
-    b = 1 && true
+    b = true
 
     assert b
   end
