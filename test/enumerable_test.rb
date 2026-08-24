@@ -6,7 +6,7 @@ class EnumerableTest < Minitest::Test
   def test_inject
     numbers = [1, 2, 3, 4, 5]
 
-    assert_equal 15, numbers.reduce(0) { |sum, n| sum + n }
+    assert_equal 15, numbers.reduce(0) { |sum, n| sum + n } # rubocop:disable Performance/Sum
   end
 
   def test_each

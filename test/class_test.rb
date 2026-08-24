@@ -28,7 +28,7 @@ end
 
 class ChildPoint < Point
   def distance(point)
-    [super, super(), super(point)]
+    [super, super(), super(point)] # rubocop:disable Style/SuperArguments
   end
 end
 
@@ -56,8 +56,8 @@ class PointTest < Minitest::Test
 
     distances = p1.distance(p2)
 
-    assert_equal distances[0], 4
-    assert_equal distances[1], 5
-    assert_equal distances[2], 4
+    assert_equal 4, distances[0]
+    assert_equal 5, distances[1]
+    assert_equal 4, distances[2]
   end
 end

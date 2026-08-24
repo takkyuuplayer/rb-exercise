@@ -5,6 +5,7 @@ require 'minitest/autorun'
 module Space1
   class StringNumber
     include Comparable
+
     def <=>(other)
       @number.to_s <=> other.number.to_s
     end
@@ -19,6 +20,7 @@ end
 module Space2
   class StringNumber
     include Comparable
+
     def <=>(other)
       @number.to_i <=> other.number.to_i
     end

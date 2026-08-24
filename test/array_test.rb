@@ -5,6 +5,7 @@ require 'minitest/autorun'
 class ArrayTest < Minitest::Test
   def test_shift
     numbers = [1, 2, 3, 4, 5]
+
     assert_equal 1, numbers.shift
     assert_equal [2, 3, 4, 5], numbers
   end
@@ -21,6 +22,6 @@ class ArrayTest < Minitest::Test
     a1 = [1, 2, 3, 4]
     a2 = a1.map(&:itself)
 
-    refute_equal a1.object_id, a2.object_id
+    refute_same a1, a2
   end
 end

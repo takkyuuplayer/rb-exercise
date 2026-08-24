@@ -4,7 +4,7 @@ require 'minitest/autorun'
 
 class FileClassTest < Minitest::Test
   def test_extname
-    assert_equal File.extname('tmp.pdf'), '.pdf'
-    assert_equal File.extname('tmp'), ''
+    assert_equal '.pdf', File.extname('tmp.pdf')
+    assert_equal '', File.extname('tmp')
   end
 end

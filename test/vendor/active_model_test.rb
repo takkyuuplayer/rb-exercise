@@ -6,6 +6,7 @@ require 'minitest/autorun'
 class ActiveModelTest < Minitest::Test
   class User
     include ActiveModel::Model
+
     attr_accessor :email, :password
 
     validates :email, presence: true
@@ -15,7 +16,7 @@ class ActiveModelTest < Minitest::Test
   def test_methods
     user = User.new(email: 'test@example.com', password: 'password')
 
-    assert user.valid?
-    assert_equal user.slice(:email, :password), { 'email' => 'test@example.com', 'password' => 'password' }
+    assert_predicate user, :valid?
+    assert_equal({ 'email' => 'test@example.com', 'password' => 'password' }, user.slice(:email, :password))
   end
 end
