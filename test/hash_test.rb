@@ -22,27 +22,27 @@ class HashTest < Minitest::Test
   def test_hash_with_default
     h = Hash.new('default')
 
-    assert_equal h[1], 'default'
-    assert_equal h[5], 'default'
+    assert_equal 'default', h[1]
+    assert_equal 'default', h[5]
 
     h[1] << 'bar'
 
-    assert_equal h[1], 'defaultbar'
-    assert_equal h[5], 'defaultbar'
-    assert_equal h[6], 'defaultbar'
+    assert_equal 'defaultbar', h[1]
+    assert_equal 'defaultbar', h[5]
+    assert_equal 'defaultbar', h[6]
   end
 
   def test_hash_with_default_block
     h = Hash.new { |hash, key| hash[key] = 'default' }
 
-    assert_equal h[1], 'default'
-    assert_equal h[5], 'default'
+    assert_equal 'default', h[1]
+    assert_equal 'default', h[5]
 
     h[1] << 'bar'
 
-    assert_equal h[1], 'defaultbar'
-    assert_equal h[5], 'default'
-    assert_equal h[6], 'default'
+    assert_equal 'defaultbar', h[1]
+    assert_equal 'default', h[5]
+    assert_equal 'default', h[6]
   end
 
   def test_to_proc

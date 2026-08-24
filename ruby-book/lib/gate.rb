@@ -19,7 +19,7 @@ class Gate
     ticket.stamp(@name)
   end
 
-  def exit(ticket)
+  def exit(ticket) # rubocop:disable Naming/PredicateMethod
     fare = calc_fare(ticket)
     fare <= ticket.fare
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './deep_freezable'
+require_relative 'deep_freezable'
 
 class Bank
   extend DeepFreezable

@@ -6,6 +6,7 @@ class TestBasic < Minitest::Test
   def test_string
     hello = 'hello'
     world = ' world'
+
     assert_equal 'hello world', hello + world
   end
 
@@ -23,7 +24,7 @@ class TestBasic < Minitest::Test
     assert_equal [1, 'str', 3, 'test'], c
 
     assert_equal a, c[0]
-    assert_equal c[-1], 'test'
+    assert_equal 'test', c[-1]
 
     assert_equal [1, 'str'], c[0..1]
     assert_equal [1], c[0...1]

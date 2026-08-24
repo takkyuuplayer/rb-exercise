@@ -7,23 +7,27 @@ class NumberTest < Minitest::Test
     assert_equal 4, 1 << 2
   end
 
+  # rubocop:disable Minitest/AssertInDelta
   def test_float
-    assert_equal 2.0 + 2.5, 4.5
-    assert_equal 2.0 + 2.6, 4.6
-    assert_equal 2.4 + 2.6, 5
+    assert_equal 4.5, 2.0 + 2.5
+    assert_equal 4.6, 2.0 + 2.6
+    assert_equal 5, 2.4 + 2.6
   end
+  # rubocop:enable Minitest/AssertInDelta
 
+  # rubocop:disable Minitest/AssertTruthy, Minitest/RefuteFalse
   def test_infinite
-    assert_equal (1.0 / 0.0).positive?, true
+    assert_equal true, (1.0 / 0.0).positive?
 
-    assert_equal (1.0 / 0.0).infinite?, 1
+    assert_equal 1, (1.0 / 0.0).infinite?
     assert_nil(-1.0.infinite?)
-    assert_equal (-1.0 / 0.0).infinite?, -1
+    assert_equal(-1, (-1.0 / 0.0).infinite?)
 
-    assert_equal (1.0 / 0.0).finite?, false
-    assert_equal(-1.0.finite?, true)
-    assert_equal (-1.0 / 0.0).finite?, false
+    assert_equal false, (1.0 / 0.0).finite?
+    assert_equal(true, -1.0.finite?)
+    assert_equal false, (-1.0 / 0.0).finite?
   end
+  # rubocop:enable Minitest/AssertTruthy, Minitest/RefuteFalse
 
   def test_comparison
     assert_equal 1 <=> 2, -1

@@ -13,6 +13,7 @@ class JwtTest < Minitest::Test
     decoded_token = JWT.decode token, nil, false
 
     a = { data: 'test2' }
+
     assert_equal a, decoded_token
   end
 end

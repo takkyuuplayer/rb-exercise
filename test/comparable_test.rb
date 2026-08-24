@@ -4,6 +4,7 @@ require 'minitest/autorun'
 
 class StringNumber
   include Comparable
+
   def <=>(other)
     @number.to_i <=> other.number.to_i
   end

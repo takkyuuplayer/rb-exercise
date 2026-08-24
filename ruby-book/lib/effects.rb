@@ -3,7 +3,7 @@
 module Effects
   def self.reverse
     lambda do |words|
-      words.split(' ').map(&:reverse).join(' ')
+      words.split.map(&:reverse).join(' ')
     end
   end
 
@@ -15,7 +15,7 @@ module Effects
 
   def self.loud(level)
     lambda do |words|
-      words.split(' ').map { |word| word.upcase + '!' * level }.join(' ')
+      words.split.map { |word| word.upcase + ('!' * level) }.join(' ')
     end
   end
 end
